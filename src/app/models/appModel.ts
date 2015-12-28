@@ -1,12 +1,13 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
 
 import * as Immutable from 'immutable';
 
 export interface IAppConfigModel {
     userLang: string;
+    menu: any;
 };
 
 export type IAppConfigRecord<T> = Immutable.Record.IRecord<IAppConfigModel>
 
 /// Instantiating this constructor generates an immutable AppConfig record wrapper.
-export const AppConfigModel = Immutable.Record<IAppConfigModel>({ userLang:'fr' }, "AppConfigModel");
+export const AppConfigModel = Immutable.Record<IAppConfigModel>({ userLang:'fr', menu: {} }, "AppConfigModel");

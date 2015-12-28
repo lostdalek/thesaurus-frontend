@@ -1,4 +1,5 @@
 var path = require('path');
+var _ = require('lodash');
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./../webpack.config.dev.js');
@@ -6,6 +7,7 @@ var config = require('./../webpack.config.dev.js');
 var app = express();
 var compiler = webpack(config);
 var port = process.env.PORT || 3000;
+var apiEndpoints = require('./api');
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -22,6 +24,22 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
+
+app.use(function (req, res, next) {
+  var foundMock = false;
+  _.forEach(apiEndpoints, function(mockFunc, mockIndex){
+    if( req.url.length >= mockIndex.length ) {
+      if (req.url.indexOf(mockIndex) > -1) {
+        foundMock = apiEndpoints[mockIndex];
+      }
+    }
+  });
+
+  if (foundMock !== false) {
+    return foundMock(req, res);
+  }
+  next();
+});
 
 app.get('*', function(req, res) {
   if (req.url.slice(-3) === "css") {

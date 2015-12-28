@@ -1,1 +1,0 @@
-export const UPDATE_APP_LANG = 'UPDATE_APP_LANG';

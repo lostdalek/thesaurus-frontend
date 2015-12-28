@@ -20,8 +20,8 @@ class TitleBarContainer extends React.Component<TitleBarProps, any> {
 
     render() {
         const {title} = this.props;
-        return (<div>
-            <div>{title}</div>
+        return (<div className="titleBar">
+            <div>title nbar{title}</div>
             <div className="test"> {this.props.children}</div>
         </div>);
     }

@@ -36,8 +36,10 @@ module.exports = {
                 loaders: ['babel'],
                 include: path.join(__dirname, 'src')
             },
+            // loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
             { test: /\.css$/, loaders: [ 'style', 'css', 'postcss' ] },
             { test: /\.scss$/, loaders: [ 'style', 'css?sourceMap', 'postcss', 'sass?sourceMap' ] },
+
             { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' }
             ]
     },

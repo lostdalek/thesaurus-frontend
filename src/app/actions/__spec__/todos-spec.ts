@@ -1,9 +1,9 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-/// <reference path="../../../typings/test.d.ts" />
+/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/test.d.ts" />
 
 import { expect } from 'chai';
 
-import * as TodoActions from '../../components/todo/actions/todos';
+import * as TodoActions from '../../../components/todo/actions/todos';
 
 describe('TodoActions', () => {
   it('creates new todo', () => {

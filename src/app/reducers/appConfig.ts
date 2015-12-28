@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
 
 import { handleActions, Action } from 'redux-actions';
 import * as Immutable from 'immutable';
@@ -9,25 +9,42 @@ import * as _ from 'lodash';
 
 import { IAppConfigModel, AppConfigModel } from '../models/appModel';
 import {
+    FETCH_MENU,
     UPDATE_APP_LANG
-} from '../constants/actionsTypes';
+} from '../../constants';
 
 export const initialConfigState: IAppConfigModel = new AppConfigModel({
-    userLang: 'fr'
+    userLang: 'fr',
+    menu: [{
+        id: 1,
+        label: 'Home',
+        children: [{
+            id: 11,
+            label: 'Dashboard'
+        }, {
+            id: 12,
+            label: 'Thesaurus'
+        }]
+    }]
 });
 
 export default handleActions<IAppConfigModel>({
+    [FETCH_MENU]: (state: IAppConfigModel, action: Action): IAppConfigModel => {
+        if (typeof state === 'undefined') {
+            return initialConfigState;
+        }
+        console.log('state',state, action)
+        return (_.assign({}, state, {
+            menu: action.payload.menu
+        }) as IAppConfigModel);
+    },
     [UPDATE_APP_LANG]: (state: IAppConfigModel, action: Action): IAppConfigModel => {
 
         if (typeof state === 'undefined') {
             return initialConfigState;
         }
-        return new AppConfigModel({
+        return (_.assign({}, state, {
             userLang: action.payload.userLang
-        });
-        /*return _.assign(initialConfigState, state, {
-            userLang: action.payload.userLang
-        });*/
-        return state;
+        }) as IAppConfigModel);
     }
 }, initialConfigState);

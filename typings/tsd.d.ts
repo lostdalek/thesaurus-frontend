@@ -5,7 +5,9 @@
 /// <reference path="redux-actions/redux-actions.d.ts" />
 /// <reference path="redux/redux.d.ts" />
 /// <reference path="immutable/immutable-overrides.d.ts" />
-/// <reference path="./global.d.ts" />
+/// <reference path="whatwg-fetch/whatwg-fetch.d.ts" />
+/// <reference path="global.d.ts" />
+/// <reference path="es6-promise/es6-promise.d.ts" />
 
 declare module "redux-simple-router" {
     import { Store } from 'redux';
@@ -19,4 +21,8 @@ declare module "redux-simple-router" {
 
     export function routeReducer(state: Istate, { type, payload })
 
+}
+
+declare module "redux-promise-middleware" {
+    export function promiseMiddleware()
 }

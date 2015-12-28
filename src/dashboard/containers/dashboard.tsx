@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/tsd.d.ts" />
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

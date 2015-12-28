@@ -1,10 +1,10 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-/// <reference path="../../../typings/test.d.ts" />
+/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/test.d.ts" />
 
 import { expect } from 'chai';
 
-import { Todo, TodoList, IRecord, TodoRecord } from '../../components/todo/models/todos';
-import todos from '../../components/todo/reducers/todos';
+import { Todo, TodoList, IRecord, TodoRecord } from '../../../components/todo/models/todos';
+import todos from '../../../components/todo/reducers/todos';
 import * as Immutable from 'immutable';
 
 import {
@@ -14,7 +14,7 @@ import {
   COMPLETE_TODO,
   COMPLETE_ALL,
   CLEAR_COMPLETED
-} from '../../components/todo/constants/ActionTypes';
+} from '../../../components/todo/constants/ActionTypes';
 
 describe('todo reducer', () => {
   it('handles add', () => {

@@ -4,27 +4,24 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as React from 'react';
 //import * as Immutable from 'immutable';
-import * as AppActions from '../../../actions/appConfig';
+import * as AppActions from '../../../app/actions/appConfig';
 import * as classnames from 'classnames';
 
 import TreeContainer from '../../tree/containers/treeContainer';
 import Menu from '../../menu/containers/menu';
 import TitleBar from '../../titleBar/containers/titleBar';
 
-import {IAppConfigRecord, IAppConfigModel, AppConfigModel} from "../../../models/appModel";
+import {IAppConfigRecord, IAppConfigModel, AppConfigModel} from "../../../app/models/appModel";
 
 
 
-import {initialConfigState} from '../../../reducers/appConfig';
-import {initialMainMenuState} from '../../../reducers/mainMenu';
-
+import {initialConfigState} from '../../../app/reducers/appConfig';
 let SidebarComponent = (require('react-sidebar') as any);
 const css = (require('./sidebar.scss') as any);
 
 
 interface SidebarProps extends React.Props<Sidebar> {
     appConfig: IAppConfigModel; //AppConfigRecord<IAppConfigModel>; // not defined first time
-    mainMenu: any;
     children: any;
     dispatch?: Redux.Dispatch;
 }
@@ -41,8 +38,7 @@ class Sidebar extends React.Component<SidebarProps, any> {
             pullRight: false,
             touchHandleWidth: 20,
             dragToggleDistance: 30,
-            appConfig: initialConfigState,
-            menu: initialMainMenuState
+            appConfig: initialConfigState
         };
         console.log('STATE', this.state)
     }
@@ -62,7 +58,7 @@ class Sidebar extends React.Component<SidebarProps, any> {
     }
 
     render() {
-        const {appConfig, mainMenu, dispatch} = this.props;
+        const {appConfig, dispatch} = this.props;
         const actions = bindActionCreators(AppActions, dispatch);
 
         // define title bar content
@@ -73,7 +69,7 @@ class Sidebar extends React.Component<SidebarProps, any> {
                 <span> React Sidebar</span>
             </span>);
 
-        const sidebar = <Menu menu={mainMenu}/>; //<SidebarContent />;
+        const sidebar = <Menu menu={appConfig.menu}/>; //<SidebarContent />;
         const sidebarProps = {
             sidebar: sidebar,
             docked: this.state.docked,

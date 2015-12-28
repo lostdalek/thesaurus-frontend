@@ -1,5 +1,75 @@
 // Customize variables
 // This gets loaded after bootstrap/variables is loaded, so you can refer to bootstrap variables
-// Here we're adjusting the hue of that default:
-$btn-primary-bg: adjust-hue($btn-primary-bg, +70deg);
-$btn-primary-border: $btn-primary-bg;
+
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base:              #333;
+$gray-darker:            lighten($gray-base, 13.5%); // #222
+$gray-dark:              lighten($gray-base, 20%);   // #333
+$gray:                   lighten($gray-base, 33.5%); // #555
+$gray-light:             lighten($gray-base, 46.7%); // #777
+$gray-lighter:           lighten($gray-base, 75%); // #eee
+
+$brand-primary:         #f28d20;
+$brand-secondary:        #ffd1a1;
+$brand-success:         #6BDC66;
+$brand-info:            #54B7B3;
+$brand-warning:         #FFD076;
+$brand-danger:          #FD7578;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  'Roboto', Helvetica, Arial, sans-serif;
+
+
+$headings-font-weight:    300;
+
+
+//** Load fonts from this directory.
+// $icon-font-path:          "../assets/fonts/glyphicons/";
+//** File name for all font files.
+// $icon-font-name:          "glyphicons-halflings-regular";
+//** Element ID within SVG icon file.
+// $icon-font-svg-id:        "glyphicons_halflingsregular";
+
+
+$border-radius-base:        0px; // 4
+$border-radius-large:       3px; // 6
+$border-radius-small:       3px; // 3
+
+
+//** Background color used for `.table-hover`.
+$table-bg-hover:                $brand-secondary;
+
+
+//** Border color for table and cell borders.
+$table-border-color:            #f2f2f2;
+
+
+$btn-font-weight:                normal;
+
+$btn-default-color:              $gray; //#333;
+$btn-default-bg:                 $gray-lighter;//#fff;
+$btn-default-border:             $gray-lighter; //#ccc;
+
+//** Padding applied to the modal body
+$modal-inner-padding:         30px 30px 15px 30px;
+
+//** Padding applied to the modal title
+$modal-title-padding:         30px;
+
+//** Modal backdrop background color
+$modal-backdrop-bg:           #000;
+//** Modal backdrop opacity
+$modal-backdrop-opacity:      .3;
+
