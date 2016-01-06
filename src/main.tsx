@@ -4,10 +4,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Store, createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import {connect, Provider} from 'react-redux';
-import { createHistory } from 'history'
-import { Router, Route, IndexRoute } from 'react-router'
-import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
-// import {thunk} from 'redux-thunk'; // import thunkMiddleware = require('redux-thunk'); //
+import { createHistory } from 'history';
+import { Router, Route, IndexRoute } from 'react-router';
+import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
 let thunk = require("redux-thunk");
 import { Action } from 'redux-actions';
 import * as classnames from 'classnames';
@@ -21,19 +20,22 @@ import {IAppConfigRecord, IAppConfigModel, AppConfigModel} from './app/models/ap
 import {IMainMenuRecord, IMainMenuModel, MainMenuModel} from './app/models/mainMenuModel';
 import { rootReducer } from './app/reducers/rootReducer.ts';
 import {initialConfigState} from './app/reducers/appConfig';
-import {promiseMiddleware} from 'redux-promise-middleware';
 
-const css = require('./main.scss');
+let promiseMiddleware = require('redux-promise');
+let css = require('./main.scss');
+
 const initialState = {
     application: {
         version: '1.0'
     }
 };
+const middlewares = [
+    (thunk as any),
+    (promiseMiddleware as any)
+];
 
-// middleware should be active in dev only:
 const createStoreWithMiddleware = compose(
-    applyMiddleware((thunk as any)),
-    // applyMiddleware(promiseMiddleware()),
+    applyMiddleware(...middlewares),
     (window as any).devToolsExtension ? (window as any).devToolsExtension() : f => f
 )(createStore);
 
@@ -50,9 +52,22 @@ const rootRoute = [{
     ]
 }];
 
+/*import * as types from './constants';
+import * as appActions from './app/actions/appConfig';
+let storeState = store.getState();
+console.log(store.getState())
+store.dispatch(appActions.fetchMenu())
+store.dispatch(appActions.updateUserLang('ok updated'))
+storeState = store.getState();
+console.log(storeState.appConfig.userLang);*/
+
+
+
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history} routes={rootRoute} />
     </Provider>,
     document.getElementById('root')
 );
+

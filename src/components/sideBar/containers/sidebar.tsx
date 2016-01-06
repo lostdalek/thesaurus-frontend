@@ -84,7 +84,7 @@ class Sidebar extends React.Component<SidebarProps, any> {
         };
 
         let element = (
-            <span onClick={() => actions.updateUserLang(appConfig,'frrr')} >change lang: {appConfig.userLang}</span>
+            <span onClick={() => actions.updateUserLang('frrr')} >change lang: {appConfig.userLang}</span>
         );
         let sidebarContent = <b>Sidebar content</b>;
 

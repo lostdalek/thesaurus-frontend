@@ -29,6 +29,15 @@ export const initialConfigState: IAppConfigModel = new AppConfigModel({
 });
 
 export default handleActions<IAppConfigModel>({
+    ['FETCH_THING']:  (state: IAppConfigModel, action: Action): IAppConfigModel => {
+        if (typeof state === 'undefined') {
+            return initialConfigState;
+        }
+        console.log('state',state, action)
+        return (_.assign({}, state, {
+            menu: action.payload.menu
+        }) as IAppConfigModel);
+    },
     [FETCH_MENU]: (state: IAppConfigModel, action: Action): IAppConfigModel => {
         if (typeof state === 'undefined') {
             return initialConfigState;
@@ -39,7 +48,7 @@ export default handleActions<IAppConfigModel>({
         }) as IAppConfigModel);
     },
     [UPDATE_APP_LANG]: (state: IAppConfigModel, action: Action): IAppConfigModel => {
-
+        console.log(state, action)
         if (typeof state === 'undefined') {
             return initialConfigState;
         }

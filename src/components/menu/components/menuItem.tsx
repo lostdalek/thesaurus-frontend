@@ -1,6 +1,7 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
 
 import * as React from 'react';
+import { Link } from 'react-router';
 import * as classnames from 'classnames';
 
 
@@ -14,9 +15,8 @@ class MenuItem extends React.Component<MenuItemProps, any> {
         super(props, context);
     }
     render() {
-        // const {menuItem} = this.props.data;
-        console.log('>>>>>>', this.props)
-        return (<li>{this.props.data.label}
+        return (<li>
+            <Link to={`${this.props.data.path}`}>{this.props.data.label}</Link>
 
             <ul className={classnames('nav navbar-nav')}>
                 {/*this.renderChildren(menu)*/}

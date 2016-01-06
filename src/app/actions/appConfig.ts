@@ -11,7 +11,7 @@ import {THESAURUS_API} from "../../constants";
 
 
 
-const fetchMenu = function(options?: any) {
+const doFetchMenu = function(options?: any) {
     const  username  = 'test';
 
     return dispatch => {
@@ -27,9 +27,26 @@ const fetchMenu = function(options?: any) {
     }
 };
 
-const updateUserLang = createAction<IAppConfigModel>(
-    types.UPDATE_APP_LANG,
-    (appConfig: IAppConfigRecord<IAppConfigModel>, newLang: string) => appConfig.set('userLang', newLang)
+const doUpdate = (appConfig: IAppConfigRecord<IAppConfigModel>, newLang: string) => {
+    console.log('pass args', appConfig, newLang)
+    return appConfig.set('userLang', newLang);
+}
+
+
+const updateUserLang =  (newLang: string) => {
+    return {
+        type: types.UPDATE_APP_LANG,
+        payload: {
+            userLang: newLang
+        }
+    }
+}
+const fetchMenu = createAction<any>(
+    types.FETCH_MENU,
+    (options: any) => {
+        console.log('create action')
+        return doFetchMenu(options)
+    }
 );
 
 export {

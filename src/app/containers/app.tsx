@@ -35,11 +35,10 @@ class App extends React.Component<AppProps, any> {
             appConfig: initialConfigState
         };
         // fetch main menu once:
-        // let something = this.props.fetchMenu()
+        //let something = this.props.fetchMenu()
     }
 
     render() {
-        console.log('Application props', this.props)
         const {appConfig, dispatch} = this.props;
         const actions = bindActionCreators(AppActions, dispatch);
         const sidebarProps = {
@@ -49,7 +48,7 @@ class App extends React.Component<AppProps, any> {
         };
 
         let element = (
-            <span onClick={() => actions.updateUserLang(appConfig,'frrr')} >change lang: {appConfig.userLang}</span>
+            <span onClick={() => actions.updateUserLang('frrr')} >change lang: {appConfig.userLang}</span>
         );
         return (
             <Sidebar {...sidebarProps}>
@@ -60,7 +59,8 @@ class App extends React.Component<AppProps, any> {
 }
 
 const mapStateToProps = state => ({
-    appConfig: state.appConfig
+    appConfig: state.appConfig,
+
 });
 
 export default connect(mapStateToProps)(App);

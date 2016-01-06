@@ -5,6 +5,7 @@ declare var require: {
 };
 interface ApplicationMenuItem {
     id: number;
+    path: string;
     label: string;
     children?: any[];
 }

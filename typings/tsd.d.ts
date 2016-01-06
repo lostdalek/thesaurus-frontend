@@ -21,8 +21,26 @@ declare module "redux-simple-router" {
 
     export function routeReducer(state: Istate, { type, payload })
 
+    export function locationsAreEqual(locA: any, locB: any);
+
 }
 
-declare module "redux-promise-middleware" {
-    export function promiseMiddleware()
+declare module ReduxPromiseMiddleware {
+    export function promiseMiddleware(): Redux.Middleware;
 }
+
+declare module 'redux-promise' {
+    export = ReduxPromiseMiddleware;
+}
+
+declare module 'redux-promise-middleware' {
+    import { Middleware } from 'redux';
+    interface ReduxPromiseOptions {
+        promiseTypeSuffixes?: string[]
+    }
+    export function promiseMiddleware(options?: ReduxPromiseOptions): Redux.Middleware;
+
+    export default promiseMiddleware;
+}
+
+
